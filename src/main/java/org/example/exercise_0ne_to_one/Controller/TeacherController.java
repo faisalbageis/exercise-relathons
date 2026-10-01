@@ -3,6 +3,7 @@ package org.example.exercise_0ne_to_one.Controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.exercise_0ne_to_one.Api.ApiResponse;
+import org.example.exercise_0ne_to_one.Dto.TeacherDto;
 import org.example.exercise_0ne_to_one.Model.Teacher;
 import org.example.exercise_0ne_to_one.Service.TeacherService;
 import org.springframework.http.ResponseEntity;
@@ -42,5 +43,11 @@ public class TeacherController {
     public ResponseEntity<?> getByTeacherId(@PathVariable Integer id){
         Teacher teacher = teacherService.getTeacherByID(id);
         return ResponseEntity.status(200).body(teacher);
+    }
+
+    @GetMapping("/get/id/name/{id}")
+    public ResponseEntity<?> getٍTeacherNameById(@PathVariable Integer id){
+       TeacherDto teacherDto = teacherService.getTeacherName(id);
+       return ResponseEntity.status(200).body(teacherDto);
     }
 }

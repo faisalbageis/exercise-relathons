@@ -2,6 +2,7 @@ package org.example.exercise_0ne_to_one.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.exercise_0ne_to_one.Api.ApiException;
+import org.example.exercise_0ne_to_one.Dto.TeacherDto;
 import org.example.exercise_0ne_to_one.Model.Teacher;
 import org.example.exercise_0ne_to_one.Repository.TeacherRepository;
 import org.springframework.stereotype.Service;
@@ -57,6 +58,17 @@ public class TeacherService {
         }
 
         return teacher;
+    }
+
+    public TeacherDto getTeacherName(Integer id){
+        Teacher teacher = teacherRepository.findTeacherById(id);
+
+        if(teacher==null){
+            throw  new ApiException("teacher not found");
+        }
+        TeacherDto teacherDto = new TeacherDto(teacher.getName());
+
+        return teacherDto;
     }
 
 }
